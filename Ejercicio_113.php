@@ -58,6 +58,11 @@ $cliente[]=$_GET["grupo2"];
 $cliente[]=$_GET["grupo3"];
 $cliente[]=$_GET["grupo4"];
 $mesas=[];
+for($e=1;$e<=10;$e++){
+    $mesas[$e]=rand(0,4);
+
+ }
+
 for($q=0;$q<=3;$q++){
 $sillas=4;
 echo"<div class='div'>";
@@ -71,14 +76,13 @@ echo"<h4>Ocupación actual de las mesas</h4></tr><tr>";
   $suma=0;
   $ban=0;
 for($e=1;$e<=10;$e++){
-    $mesas[$e]=rand(0,4);
    
 echo " <td class='cos'> Mesa $e <br><br> Lugares <br> Ocupados : <span>$mesas[$e]</span><br><br> Libres:<span>"  .(int)(4-$mesas[$e]) ."<span>" ;
 echo " </td> " ;
 $suma=$cliente[$q]+$mesas[$e];
 if($suma<=$sillas){
 $a="<h3><spam>Grupo " .( $q+1 ). " ustedes son " . $cliente[$q]. " usen la mesa " ." $e</pam> </h3>";
-
+$mesas[$e]+=$cliente[$q];
 $sillas=0;
 $ban=1;
 }
@@ -89,7 +93,7 @@ if($ban==1){
     echo $a;
 }else{
      
-    echo "<h2>Lo siento Grupo " . (int)($q+1) . ", en estos momentos no queda sitio.</h2>";
+    echo "<h2>Lo siento Grupo " . (int)($q+1) . " ustedes son " .  $cliente[$q] .  ", en estos momentos no queda sitio.</h2>";
 }
 echo "</tr></table>";
 echo "<br>";
